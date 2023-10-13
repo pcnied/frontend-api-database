@@ -6,7 +6,12 @@ import {
 
 import { RootState } from '../..';
 import serviceAPI from '../../../configs/services/integration.api';
-import Anotations from '../../../types/Anotations';
+import {
+	Anotations,
+	CreateAnotation,
+	DeleteAnotation,
+	FilterAnotations,
+} from '../../../types/anotations';
 import { showNotification } from '../Notification/notificationSlice';
 
 const anotationsAdapter = createEntityAdapter<Anotations>({
@@ -15,8 +20,8 @@ const anotationsAdapter = createEntityAdapter<Anotations>({
 
 export const createAnotation = createAsyncThunk(
 	'anotations/createAnotation',
-	async (anotation: Omit<Anotations, 'id'>, { dispatch }) => {
-		const { title, description, userId } = anotation;
+	async (anotation: CreateAnotation, { dispatch }) => {
+		const { userId, title, description } = anotation;
 
 		try {
 			const response = await serviceAPI.post(
@@ -83,18 +88,13 @@ export const updateAnotation = createAsyncThunk(
 	},
 );
 
-interface DeleteType {
-	userId: string;
-	idAnotation: string;
-}
-
 export const deleteAnotation = createAsyncThunk(
 	'anotations/deleteAnotation',
-	async (deleteParam: DeleteType, { dispatch }) => {
-		const { userId, idAnotation } = deleteParam;
+	async (deleteParam: DeleteAnotation, { dispatch }) => {
+		const { userId, anotationId } = deleteParam;
 		try {
 			const response = await serviceAPI.delete(
-				`/users/${userId}/anotation/${idAnotation}`,
+				`/users/${userId}/anotation/${anotationId}`,
 			);
 
 			dispatch(
@@ -116,12 +116,6 @@ export const deleteAnotation = createAsyncThunk(
 		}
 	},
 );
-
-type FilterAnotations = {
-	userId: string;
-	archived?: boolean;
-	title?: string;
-};
 
 export const getAnotation = createAsyncThunk(
 	'anotations/listAnotation',

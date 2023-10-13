@@ -1,4 +1,4 @@
-export default interface Anotations {
+export interface Anotations {
 	userId: string;
 	id: string;
 	title?: string;
@@ -6,3 +6,16 @@ export default interface Anotations {
 	createdAt?: string;
 	archived?: boolean;
 }
+
+export type FilterAnotations = {
+	userId: string;
+	archived?: boolean;
+	title?: string;
+};
+
+export type CreateAnotation = Omit<Anotations, 'id'>;
+
+export type DeleteAnotation = {
+	userId: string;
+	anotationId: string;
+};

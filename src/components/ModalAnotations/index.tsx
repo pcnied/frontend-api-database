@@ -18,7 +18,7 @@ import {
 	updateAnotation,
 } from '../../store/modules/Anotations/anotationsSlice';
 import { hideModal } from '../../store/modules/ModalAnotations';
-import Anotations from '../../types/Anotations';
+import { Anotations } from '../../types/anotations';
 
 interface ModalAnotationsProps {
 	anotationSelected?: Anotations;

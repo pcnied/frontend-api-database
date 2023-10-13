@@ -16,6 +16,6 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": ["src"],
+  "include": ["c:/Users/T-Gamer/Desktop/Trabalho-Final-Banco-de-Dados-II/frontend-api/tsconfig.json"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

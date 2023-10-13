@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 
 import { useAppDispatch } from '../../store/hooks';
 import { updateAnotation } from '../../store/modules/Anotations/anotationsSlice';
-import Anotations from '../../types/Anotations';
+import { Anotations } from '../../types/anotations';
 import ModalAnotations from '../ModalAnotations';
 
 interface ItemAnotationProps {
